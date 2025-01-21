@@ -1,10 +1,9 @@
-import { createCache } from "@ant-design/cssinjs";
-import { extractLocale } from "utils/locales/extractLocale";
-import type { PageContext } from "vike/types";
-import { modifyUrl } from "vike/modifyUrl";
+export default onBeforeRoute;
 
-export default (pageContext: PageContext) => {
-  pageContext.antdCache = createCache();
+import { extractLocale } from "utils/locales/extractLocale";
+import { modifyUrl } from "vike/modifyUrl";
+import type { OnBeforeRouteSync } from "vike/types";
+const onBeforeRoute: OnBeforeRouteSync = (pageContext): ReturnType<OnBeforeRouteSync> => {
   const url = pageContext.urlParsed;
   const { urlPathnameWithoutLocale, locale } = extractLocale(url.pathname);
   const urlLogical = modifyUrl(url.href, { pathname: urlPathnameWithoutLocale });

@@ -23,7 +23,12 @@
       "vite-plugin-vercel/types"
     ],
     "jsx": "preserve",
-    "jsxImportSource": "react"
+    "jsxImportSource": "react",
+    "baseUrl": "./",
+    "paths": {
+      "@assets": ["assets/*"],
+
+    }
   },
   "exclude": [
     "dist"
