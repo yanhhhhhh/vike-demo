@@ -9,6 +9,6 @@ export default defineConfig({
       prerender: true,
     }),
     react({}),
-    vercel(),
+    // vercel(),
   ],
 });
