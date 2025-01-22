@@ -1,6 +1,6 @@
-import request, { PageResult } from '@/request';
+import request, { PageResult } from "@/request";
 
-const pre = '/regionWeb/webTermsInfo';
+const pre = "/regionWeb/webTermsInfo";
 export interface AgreementObject {
   id: string;
   isDelete: string;
@@ -11,17 +11,17 @@ export interface AgreementObject {
   countryId: number;
   language: string;
   fileType: string;
-  termsText: 'WEB' | 'APP';
+  termsText: "WEB" | "APP";
   termsType: string;
 }
 export interface AgreementParams {
   pageNum: number;
   pageSize: number;
-  termsType?: 'WEB' | 'APP';
+  termsType?: "WEB" | "APP";
   language?: 1 | 2; //英文1，中文2
 }
 export function getList(params: AgreementParams) {
-  return request.get<PageResult<AgreementObject>>(pre + '/selectList', {
+  return request.get<PageResult<AgreementObject>>(pre + "/selectList", {
     params,
   });
 }

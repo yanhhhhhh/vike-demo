@@ -3,7 +3,7 @@ import react from "@vitejs/plugin-react";
 import { defineConfig } from "vite";
 import vike from "vike/plugin";
 import path from "path";
-
+import { VitePWAConfig, VitePWA } from "./plugins/pwa";
 export default defineConfig({
   resolve: {
     alias: {
@@ -15,6 +15,7 @@ export default defineConfig({
       prerender: true,
     }),
     react({}),
+    VitePWA(VitePWAConfig),
     // vercel(),
   ],
 });

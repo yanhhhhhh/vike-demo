@@ -1,13 +1,13 @@
-import { stringify } from 'qs';
-import request, { PageResult, Result } from '@/request';
+import { stringify } from "qs";
+import request, { PageResult, Result } from "@/request";
 
-import { LanguagesMap } from '@/constants/languagesMap';
-import { getDicts } from './dict';
+import { LanguagesMap } from "@/constants/languagesMap";
+import { getDicts } from "./dict";
 
-type TExampleTitle = 'DEFAULT' | 'NEWS' | 'DYNAMIC'; // 案例类型：DEFAULT=默认模板1; NEWS=公司新闻;DYNAMIC=最新动态
-type TPublishStatus = 'Y' | 'N'; // 发布状态Y=是，N=否
-type TCheckStatus = 'Y' | 'N';
-type TCoverType = 'IMG' | 'VIDEO'; // 封面类型:IMG图片,VIDEO视频
+type TExampleTitle = "DEFAULT" | "NEWS" | "DYNAMIC"; // 案例类型：DEFAULT=默认模板1; NEWS=公司新闻;DYNAMIC=最新动态
+type TPublishStatus = "Y" | "N"; // 发布状态Y=是，N=否
+type TCheckStatus = "Y" | "N";
+type TCoverType = "IMG" | "VIDEO"; // 封面类型:IMG图片,VIDEO视频
 type TLanguage = keyof typeof LanguagesMap;
 
 interface CaseListFilters {
@@ -49,14 +49,14 @@ export interface ICase {
   exampleTag?: string;
 }
 
-const caseUrlPre = '/regionWeb/webExampleInfo';
-const ExampleTypeDictKey = 'web_example_type';
+const caseUrlPre = "/regionWeb/webExampleInfo";
+const ExampleTypeDictKey = "web_example_type";
 // 获取案例列表
 export function getCaseList(filters: CaseListFilters) {
   const params = stringify(filters);
   return request.get<PageResult<ICase>>(`${caseUrlPre}/selectList?${params}`, {
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
   });
 }

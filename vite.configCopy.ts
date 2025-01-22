@@ -2,7 +2,7 @@ import { ConfigEnv, defineConfig, loadEnv } from "vite";
 import react from "@vitejs/plugin-react";
 import path from "path";
 
-import { VitePWAConfig, VitePWA } from "./vitePWA.config";
+import { VitePWAConfig, VitePWA } from "../";
 import viteCompression from "vite-plugin-compression";
 import legacy from "@vitejs/plugin-legacy";
 import tailwindcss from "tailwindcss";

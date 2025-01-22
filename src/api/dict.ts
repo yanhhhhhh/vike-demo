@@ -1,4 +1,4 @@
-import request, { Result } from '@/request';
+import request, { Result } from "@/request";
 
 export interface DictType {
   dictLabel: string;

@@ -12,25 +12,15 @@
     "noEmit": true,
     "moduleResolution": "Bundler",
     "target": "ES2022",
-    "lib": [
-      "DOM",
-      "DOM.Iterable",
-      "ESNext"
-    ],
-    "types": [
-      "vite/client",
-      "vike-react",
-      "vite-plugin-vercel/types"
-    ],
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "types": ["vite/client", "vike-react", "vite-plugin-vercel/types"],
     "jsx": "preserve",
     "jsxImportSource": "react",
-   "baseUrl": "./",
+    "baseUrl": "./",
     "paths": {
-      "@/*": ["src/*"],
-
+      "@/*": ["src/*"]
     }
   },
-  "exclude": [
-    "dist"
-  ]
+  // "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.js", "src/**/*.jsx", "src/**/*.json"],
+  "exclude": ["dist"]
 }
