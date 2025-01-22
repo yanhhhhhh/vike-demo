@@ -6,6 +6,7 @@ declare global {
     interface PageContext {
       antdCache?: Entity;
       locale?: TLocale | string;
+      urlLogical?: string;
     }
   }
 }

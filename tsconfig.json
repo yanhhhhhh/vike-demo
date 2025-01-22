@@ -24,9 +24,9 @@
     ],
     "jsx": "preserve",
     "jsxImportSource": "react",
-    "baseUrl": "./",
+   "baseUrl": "./",
     "paths": {
-      "@assets": ["assets/*"],
+      "@/*": ["src/*"],
 
     }
   },
