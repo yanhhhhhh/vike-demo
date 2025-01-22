@@ -106,7 +106,7 @@ export const VitePWAConfig: Partial<VitePWAOptions> = {
     ],
   },
   devOptions: {
-    enabled: true,
+    enabled: false,
     navigateFallback: "index.html",
     suppressWarnings: true,
     type: "module",

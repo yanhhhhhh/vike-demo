@@ -5,6 +5,7 @@ import { locales, localeDefault } from "@/utils/locales/locales";
 import type { OnPrerenderStartAsync, PageContextServer } from "vike/types";
 
 const onPrerenderStart: OnPrerenderStartAsync = async (prerenderContext): ReturnType<OnPrerenderStartAsync> => {
+  console.log("onPrerenderStart", prerenderContext);
   const pageContexts: PageContextServer[] = [];
   prerenderContext.pageContexts.forEach((pageContext) => {
     // Duplicate pageContext for each locale

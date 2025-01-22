@@ -4,6 +4,7 @@ import { useConfig } from "vike-react/useConfig";
 import type { PageContext } from "vike/types";
 
 export default (pageContext: PageContext) => {
+  // console.log("onAfterRenderHtml", pageContext);
   const config = useConfig();
   const cache = pageContext.antdCache;
 

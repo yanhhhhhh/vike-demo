@@ -11,7 +11,10 @@ export default {
   // https://vike.dev/head-tags
   title: "My Vike App",
   description: "Demo showcasing Vike",
-  stream: true,
-
+  // stream: true,\
+  //  passToClient 传递服务端数据到客户端
+  passToClient: ["locale"],
+  clientRouting: true,
+  // hydrationCanBeAborted: true,
   extends: vikeReact,
 } satisfies Config;

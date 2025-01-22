@@ -15,7 +15,7 @@ export default defineConfig({
       prerender: true,
     }),
     react({}),
-    VitePWA(VitePWAConfig),
+    // VitePWA(VitePWAConfig),
     // vercel(),
   ],
 });
