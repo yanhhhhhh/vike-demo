@@ -1,10 +1,10 @@
-import { AgreementObject } from '@/api/agrreement';
-import { LabelObject } from '@/api/label';
+import { AgreementObject } from "@/api/agrreement";
+import { LabelObject } from "@/api/label";
 
-import { FileType, fileType } from '@/constants';
-import { storePageLabelConfigList } from '@/utils/page';
-import { atom } from 'jotai';
-export const templateId = atom<string>('');
+import { FileType } from "@/constants/agreement";
+import { storePageLabelConfigList } from "@/utils/page";
+import { atom } from "jotai";
+export const templateId = atom<string>("");
 
 export const templateGroupMapAtom = atom<
   {
@@ -13,9 +13,7 @@ export const templateGroupMapAtom = atom<
   }[]
 >([]);
 export const agreementList = atom<AgreementObject[]>([]);
-export const agreementMap = atom<
-  Record<'en_US' | 'zh_CN', Record<FileType, AgreementObject>>
->({
+export const agreementMap = atom<Record<"en_US" | "zh_CN", Record<FileType, AgreementObject>>>({
   en_US: {} as Record<FileType, AgreementObject>,
   zh_CN: {} as Record<FileType, AgreementObject>,
 });
@@ -26,7 +24,7 @@ export const templateMenuListAtom = atom<LabelObject[]>([]);
 export const templateLabelConfigListAtom = atom<LabelObject[]>((get) => {
   const menuList = get(templateMenuListAtom);
   const labelConfigList = storePageLabelConfigList(menuList, []);
-  console.log('templateLabelConfigListAtom', labelConfigList);
+  console.log("templateLabelConfigListAtom", labelConfigList);
   return labelConfigList;
 });
 export const templateBottomMenuListAtom = atom<LabelObject[]>([]);

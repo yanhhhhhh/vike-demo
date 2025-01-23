@@ -1,45 +1,43 @@
 import { AgreementObject, getDetailHtml, getExternalHtmlById, getList } from "@/api/agrreement";
-import { FileType, agreement, fileType } from "@/constants";
+import { FileType, agreement, fileType } from "@/constants/agreement";
 
-import { agreementList, agreementMap, isInitializedAgreementAtom } from "@/stores";
-import { useAsyncEffect } from "ahooks";
+import { agreementList, agreementMap, isInitializedAgreementAtom } from "@/stores/template";
 
 import { useAtom, useSetAtom } from "jotai";
 
-import { useCallback, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useCallback } from "react";
+
+import { usePageContext } from "vike-react/usePageContext";
 
 export const useAgreement = () => {
-  const { locale } = useParams();
+  const { locale } = usePageContext();
 
   const setAgreementList = useSetAtom(agreementList);
-  const [isInitialized, setIsInitialized] = useAtom(isInitializedAgreementAtom);
+  const setIsInitialized = useSetAtom(isInitializedAgreementAtom);
   const [agreementMapValue, setAgreementMap] = useAtom(agreementMap);
 
   function getAgreementList() {
-    return getList({ pageNum: 1, pageSize: 10, termsType: "WEB" }).then((res) => {
-      const { code, data } = res.data;
-      const { list = [] } = data;
-      if (code === 200) {
-        setAgreementList(list);
-        const map = list.reduce(
-          (acc, cur) => {
-            if (fileType.includes(cur.fileType)) {
-              if (cur.language === "1") acc["en_US"][cur.fileType as FileType] = cur;
-              if (cur.language === "2") acc["zh_CN"][cur.fileType as FileType] = cur;
-            }
-
-            return acc;
-          },
-          { en_US: {}, zh_CN: {} } as Record<"en_US" | "zh_CN", Record<FileType, AgreementObject>>,
-        );
-        setIsInitialized(true);
-        setAgreementMap(map);
-
-        return map;
-      }
-      return { en_US: {}, zh_CN: {} };
-    });
+    // return getList({ pageNum: 1, pageSize: 10, termsType: "WEB" }).then((res) => {
+    //   const { code, data } = res.data;
+    //   const { list = [] } = data;
+    //   if (code === 200) {
+    //     setAgreementList(list);
+    //     const map = list.reduce(
+    //       (acc, cur) => {
+    //         if (fileType.includes(cur.fileType)) {
+    //           if (cur.language === "1") acc["en_US"][cur.fileType as FileType] = cur;
+    //           if (cur.language === "2") acc["zh_CN"][cur.fileType as FileType] = cur;
+    //         }
+    //         return acc;
+    //       },
+    //       { en_US: {}, zh_CN: {} } as Record<"en_US" | "zh_CN", Record<FileType, AgreementObject>>,
+    //     );
+    //     setIsInitialized(true);
+    //     setAgreementMap(map);
+    //     return map;
+    //   }
+    //   return { en_US: {}, zh_CN: {} };
+    // });
   }
   /**
    * 获取当前协议详情

@@ -7,6 +7,7 @@ import { useMemo } from "react";
 import { SolarPanelSeries } from "../components/production";
 
 const SolarPanelPage = () => {
+  // todo: use device
   // const { device } = useAtomValue(baseConfig);
   const device = {
     isPc: true,
@@ -29,7 +30,7 @@ const SolarPanelPage = () => {
       }}
     >
       <Card key={"solar"} {...bannerProps}></Card>
-      {/* <SolarPanelSeries></SolarPanelSeries> */}
+      <SolarPanelSeries></SolarPanelSeries>
     </div>
   );
 };

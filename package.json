@@ -1,9 +1,12 @@
 {
   "scripts": {
     "dev": "vike dev",
+    "prod": "vite dev --mode= production",
+    "pre": "vike dev --mode= pre",
     "build": "vike build",
     "preview": "vike build && vike preview",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "build:icon": "node ./scripts/build-icon.js /src/components/icons/"
   },
   "dependencies": {
     "@ant-design/cssinjs": "^1.23.0",

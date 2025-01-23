@@ -6,6 +6,7 @@ declare global {
       antdCache?: Entity;
       locale: string;
       urlLogical: string;
+      token: string;
     }
   }
 }

@@ -1,9 +1,9 @@
-import { ChildLabelDTOList, LabelObject } from '@/api/label';
+import { ChildLabelDTOList, LabelObject } from "@/api/label";
 
-import { useLocale } from '@/hooks';
-import { useAgreement } from '@/hooks/useAgreement';
-import { useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocale } from "@/hooks";
+import { useAgreement } from "@/hooks/useAgreement";
+import { useState } from "react";
+import { useLocation } from "react-router-dom";
 
 export interface IMenusChildren extends ChildLabelDTOList {
   name: string;
@@ -22,38 +22,33 @@ export interface IMenuItem extends LabelObject {
   children: IMenusChildren[];
 }
 const agreementKeyMap = {
-  privacyPolicy: 'privacy',
-  userAgreement: 'users',
+  privacyPolicy: "privacy",
+  userAgreement: "users",
 };
 export const useTemplatNav = () => {
-  const [currentClickActiveId, setCurrentClickActiveId] = useState<string>('');
+  const [currentClickActiveId, setCurrentClickActiveId] = useState<string>("");
 
   const { navigateTo, locale } = useLocale();
   const { goToAgreementPage } = useAgreement();
   const location = useLocation();
   const isActived = (item: IMenuItem | IMenusChildren) => {
-    if (['privacyPolicy', 'userAgreement'].includes(item.routerCode)) {
+    if (["privacyPolicy", "userAgreement"].includes(item.routerCode)) {
       return false;
     }
 
     // if (item.labelType == 'menu') {
     //   console.log('menu', item);
     // }
-    if (item.path === '/') {
+    if (item.path === "/") {
       return location.pathname === `/${locale}/`;
     }
     if (item.children == undefined || item.children.length === 0) {
-      return (
-        location.pathname == `/${locale}/${item.path}` &&
-        item.id === currentClickActiveId
-      );
+      return location.pathname == `/${locale}/${item.path}` && item.id === currentClickActiveId;
     }
     if (item.children && item.children.length > 0) {
       return item.children.some((child) => {
         return (
-          child.path !== '' &&
-          location.pathname == `/${locale}/${child.path}` &&
-          child.id === currentClickActiveId
+          child.path !== "" && location.pathname == `/${locale}/${child.path}` && child.id === currentClickActiveId
         );
       });
     }
@@ -62,24 +57,22 @@ export const useTemplatNav = () => {
   };
 
   const goTo = (item: IMenuItem | IMenusChildren) => {
-    const param = JSON.parse(item.param ?? '{}');
-    console.log('goTo', item);
+    const param = JSON.parse(item.param ?? "{}");
+    console.log("goTo", item);
     if (
-      ['bottomPageNav', 'customPage'].includes(item.labelType) &&
-      ['privacyPolicy', 'userAgreement'].includes(param?.selectPage)
+      ["bottomPageNav", "customPage"].includes(item.labelType) &&
+      ["privacyPolicy", "userAgreement"].includes(param?.selectPage)
     ) {
       // 跳转到协议页面
-      const path = `/agreement/${
-        agreementKeyMap[param?.selectPage as keyof typeof agreementKeyMap]
-      }`;
+      const path = `/agreement/${agreementKeyMap[param?.selectPage as keyof typeof agreementKeyMap]}`;
       goToAgreementPage(path);
       return;
     }
 
-    if (item.labelType == 'menu') {
+    if (item.labelType == "menu") {
       return;
     }
-    if (item.labelType == 'customPage' && item.isLink && item.linkUrl) {
+    if (item.labelType == "customPage" && item.isLink && item.linkUrl) {
       window.open(item.linkUrl);
       return;
     }

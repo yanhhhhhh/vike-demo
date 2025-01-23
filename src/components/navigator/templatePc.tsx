@@ -1,28 +1,28 @@
-import Logo from '@/assets/images/logow.svg';
-import { baseConfig } from '@/stores';
-import { getDeviceClassname, isTablet } from '@/utils';
-import { useMemoizedFn } from 'ahooks';
-import { Flex } from 'antd';
-import { useAtomValue } from 'jotai';
+import Logo from "@/assets/images/logow.svg";
+import { baseConfig } from "@/stores";
+import { getDeviceClassname, isTablet } from "@/utils";
+import { useMemoizedFn } from "ahooks";
+import { Flex } from "antd";
+import { useAtomValue } from "jotai";
 
-import LanguageSwitch from '../languageSwitch';
-import Style from './view.module.less';
+import LanguageSwitch from "../languageSwitch";
+import Style from "./view.module.less";
 
-import { useLocale } from '@/hooks';
+import { useLocale } from "@/hooks";
 
-import { useTemplateMenu } from '@/hooks/template/useTemplateMenu';
-import HeroTemplatDropdown from './heroTemplateDropdown';
-import { useTemplatNav } from '@/hooks/template/useTemplatNav';
+import { useTemplateMenu } from "@/hooks/template/useTemplateMenu";
+import HeroTemplatDropdown from "./heroTemplateDropdown";
+import { useTemplatNav } from "@/hooks/template/useTemplatNav";
 
-import { getName } from '@/utils/page';
-import { useEffect, useState } from 'react';
+import { getName } from "@/utils/page";
+import { useEffect, useState } from "react";
 
 const PcNav = () => {
   const { navigateTo, getI18nBackEndKey } = useLocale();
   const [isTabletValue, setIsTabletValue] = useState(true);
   const base = useAtomValue(baseConfig);
   const goHome = useMemoizedFn(() => {
-    navigateTo('/');
+    navigateTo("/");
   });
 
   const { isActived, goTo } = useTemplatNav();
@@ -33,16 +33,16 @@ const PcNav = () => {
     setIsTabletValue(isTableTemp);
   }
   useEffect(() => {
-    window.addEventListener('load', () => {
+    window.addEventListener("load", () => {
       // PC 端触发，ios ipad 不触发，默认isTabletValue = true ，hover 在ipad 上dropdown 会有问题
       changeTabletFlag();
     });
 
-    window.addEventListener('orientationchange', changeTabletFlag);
+    window.addEventListener("orientationchange", changeTabletFlag);
 
     return () => {
-      window.removeEventListener('load', changeTabletFlag);
-      window.removeEventListener('orientationchange', changeTabletFlag);
+      window.removeEventListener("load", changeTabletFlag);
+      window.removeEventListener("orientationchange", changeTabletFlag);
     };
   }, []);
   return (
@@ -61,10 +61,7 @@ const PcNav = () => {
               if (item.childLabelDTOList && item.childLabelDTOList.length > 0) {
                 return (
                   <div key={item.id} className={`${Style.navListItem}`}>
-                    <HeroTemplatDropdown
-                      data={item}
-                      isTabletValue={isTabletValue}
-                    />
+                    <HeroTemplatDropdown data={item} isTabletValue={isTabletValue} />
                   </div>
                 );
               }
@@ -72,7 +69,7 @@ const PcNav = () => {
               return (
                 <h1
                   className={`${Style.navItem} 
-                  ${isActived(item) ? Style['navItem-active'] : ''}  
+                  ${isActived(item) ? Style["navItem-active"] : ""}  
                   `}
                   key={item.id}
                   onClick={() => goTo(item)}

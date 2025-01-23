@@ -42,15 +42,18 @@ export default tseslint.config(
       ],
       "@typescript-eslint/no-namespace": 0,
       "@typescript-eslint/no-explicit-any": 0,
-      "react/react-in-jsx-scope": "off", 
+      "@typescript-eslint/no-empty-object-type": 0,
+
     },
   },
 
   {
     files: ["**/*.{js,mjs,cjs,jsx,mjsx,ts,tsx,mtsx}"],
     ...react,
+ 
     languageOptions: {
       ...react.languageOptions,
+     
       globals: {
         ...globals.serviceworker,
         ...globals.browser,
@@ -61,6 +64,9 @@ export default tseslint.config(
       react: {
         version: "detect",
       },
+    },
+    rules: {
+      'react/react-in-jsx-scope': 'off', // Disable the rule here
     },
   },
 

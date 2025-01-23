@@ -1,8 +1,8 @@
-import { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useEffect } from "react";
+import { usePageContext } from "vike-react/usePageContext";
 
 export const ScrollToTop = () => {
-  const location = useLocation();
+  const pageConntext = usePageContext();
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -10,4 +10,5 @@ export const ScrollToTop = () => {
 
   return null;
 };
+
 export default ScrollToTop;

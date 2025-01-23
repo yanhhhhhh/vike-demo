@@ -1,4 +1,3 @@
-import { stringify } from "qs";
 import request, { PageResult, Result } from "@/request";
 
 import { LanguagesMap } from "@/constants/languagesMap";
@@ -10,6 +9,19 @@ type TCheckStatus = "Y" | "N";
 type TCoverType = "IMG" | "VIDEO"; // 封面类型:IMG图片,VIDEO视频
 type TLanguage = keyof typeof LanguagesMap;
 
+function stringify(obj: Record<string, any>, prefix?: string): string {
+  const queryString = Object.keys(obj).map((key) => {
+    const value = obj[key];
+    const encodedKey = prefix ? `${prefix}[${encodeURIComponent(key)}]` : encodeURIComponent(key);
+
+    if (typeof value === "object" && value !== null) {
+      return stringify(value, encodedKey);
+    }
+    return `${encodedKey}=${encodeURIComponent(String(value))}`;
+  });
+
+  return queryString.join("&");
+}
 interface CaseListFilters {
   id?: string;
   areaCode?: string; // 国家编码

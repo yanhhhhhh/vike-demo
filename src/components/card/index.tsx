@@ -25,6 +25,7 @@ export interface CardProps extends PropsWithChildren {
   hoverAnimaiton?: boolean;
   descriptionInnerHtml?: boolean;
 }
+// todo: add moreType
 export const Card = (pros: CardProps) => {
   const { t } = useTranslation();
   const [isHover, setIsHover] = useState(false);

@@ -2,18 +2,18 @@ import { isNumber } from "lodash-es";
 import { FC } from "react";
 
 import { create } from "./icons";
-import { IconProps } from "./type";
+import { IconInnerSize, IconProps } from "./type";
 
 let loaded = false;
 (function () {
   if (!loaded) {
     window.addEventListener("DOMContentLoaded", () => {
+      console.log("DOMContentLoaded");
       create();
     });
     loaded = true;
   }
 })();
-
 const Icon: FC<IconProps> = ({ name, size = "large", ...rest }) => {
   const svgSize = isNumber(size) ? size : IconInnerSize[size];
 

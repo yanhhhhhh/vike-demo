@@ -1,22 +1,18 @@
-import { LabelObject } from '@/api/label';
-import { templateBottomMenuListAtom, templateMenuListAtom } from '@/stores';
-import {
-  getPageMenu,
-  storePageMenuList,
-  storeTopMenuRouteMap,
-} from '@/utils/page';
-import { useAtomValue } from 'jotai';
-import { useMemo } from 'react';
-import { useLocale } from '@/hooks';
-import { IMenuItem, IMenusChildren } from './useTemplatNav';
+import { LabelObject } from "@/api/label";
+import { templateBottomMenuListAtom, templateMenuListAtom } from "@/stores";
+import { getPageMenu, storePageMenuList, storeTopMenuRouteMap } from "@/utils/page";
+import { useAtomValue } from "jotai";
+import { useMemo } from "react";
+import { useLocale } from "@/hooks";
+import { IMenuItem, IMenusChildren } from "./useTemplatNav";
 // 递归填充route和routerCode 为topMenuRouteMap的route 用于路由跳转
 function templateBottomWithRoute(
   templateBottomMenuList: LabelObject[],
-  topMenuRouteMap: Map<string, IMenuItem | IMenusChildren>
+  topMenuRouteMap: Map<string, IMenuItem | IMenusChildren>,
 ): LabelObject[] {
   return templateBottomMenuList.map((item) => {
-    const param = JSON.parse(item?.param ?? '{}');
-    const relatedTopMenuId = param?.relatedTopMenuId ?? '';
+    const param = JSON.parse(item?.param ?? "{}");
+    const relatedTopMenuId = param?.relatedTopMenuId ?? "";
 
     // If there's a relatedTopMenuId, attempt to find the corresponding top route
     if (relatedTopMenuId) {
@@ -43,9 +39,7 @@ function templateBottomWithRoute(
     // If no relatedTopMenuId or no matching top route, return the item as is
     return {
       ...item,
-      childLabelDTOList: item.childLabelDTOList
-        ? templateBottomWithRoute(item.childLabelDTOList, topMenuRouteMap)
-        : [],
+      childLabelDTOList: item.childLabelDTOList ? templateBottomWithRoute(item.childLabelDTOList, topMenuRouteMap) : [],
       children: item.childLabelDTOList,
     };
   });
@@ -66,10 +60,7 @@ export const useTemplateMenu = () => {
   }, [topMenu]);
 
   const bottomMenu = useMemo(() => {
-    const newBottomMenu = templateBottomWithRoute(
-      templateBottomMenuList,
-      topMenuRouteMap
-    );
+    const newBottomMenu = templateBottomWithRoute(templateBottomMenuList, topMenuRouteMap);
     const menu = storePageMenuList(newBottomMenu);
     return getPageMenu(menu, getI18nBackEndKey);
   }, [getI18nBackEndKey, templateBottomMenuList, topMenuRouteMap]);

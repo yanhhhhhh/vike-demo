@@ -1,3 +1,4 @@
+import { baseConfig } from "@/stores";
 import { allCountry, EastAsia } from "@/constants";
 // 基础存储
 import { atomWithStorage, createJSONStorage } from "jotai/utils";
@@ -5,6 +6,7 @@ import { storeKeys } from "./constants";
 
 import { RegionCountry } from "@/constants";
 import type { Device } from "@/utils";
+import { atom } from "jotai";
 
 enum ELang {
   chinese = "zh_CN",
@@ -18,9 +20,11 @@ interface IBaseConfig extends RegionCountry {
   isFullscreenFlag: boolean;
   theme: "dark" | "blue";
 }
-const base = JSON.parse(localStorage.getItem("baseConfig") ?? "{}");
+// const base = JSON.parse(localStorage.getItem("baseConfig") ?? "{}");
+const base = JSON.parse("{}");
 
-const language = base?.locale ?? localStorage.getItem("i18nextLng") ?? "zh_CN";
+// const language = base?.locale ?? localStorage.getItem("i18nextLng") ?? "zh_CN";
+const language = "zh_CN";
 
 const initialBaseStore: IBaseConfig = {
   language,
@@ -34,7 +38,7 @@ const initialBaseStore: IBaseConfig = {
   ...(allCountry.filter((item) => item.locale === language)[0] || EastAsia[0]),
 };
 
-const storage = createJSONStorage<IBaseConfig>(() => localStorage);
-const baseConfig = atomWithStorage<IBaseConfig>(storeKeys.baseConfig, initialBaseStore, storage);
-
+// const storage = createJSONStorage<IBaseConfig>(() => localStorage);
+// const baseConfig = atomWithStorage<IBaseConfig>(storeKeys.baseConfig, initialBaseStore, storage);
+const baseConfig = atom(initialBaseStore);
 export { baseConfig, ELang };

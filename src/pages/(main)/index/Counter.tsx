@@ -1,8 +1,10 @@
+import { counterAtom } from "@/stores/couter";
 import { Button } from "antd";
+import { useAtom } from "jotai";
 import React, { useState } from "react";
 
 export function Counter() {
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useAtom(counterAtom);
 
   return (
     <Button

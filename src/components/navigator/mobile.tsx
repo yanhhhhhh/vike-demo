@@ -1,18 +1,18 @@
-import Logo from '@/assets/images/logow.svg';
-import { baseConfig } from '@/stores';
-import { getDeviceClassname } from '@/utils';
-import { useMemoizedFn } from 'ahooks';
-import { Flex, Space } from 'antd';
-import { useAtomValue } from 'jotai';
-import { memo, useCallback } from 'react';
-import LanguageSwitch from '../languageSwitch';
-import Style from './view.module.less';
+import Logo from "@/assets/images/logow.svg";
+import { baseConfig } from "@/stores";
+import { getDeviceClassname } from "@/utils";
+import { useMemoizedFn } from "ahooks";
+import { Flex, Space } from "antd";
+import { useAtomValue } from "jotai";
+import { memo, useCallback } from "react";
+import LanguageSwitch from "../languageSwitch";
+import Style from "./view.module.less";
 
-import { useLocale } from '@/hooks';
-import { LeftOutlined } from '@ant-design/icons';
-import { useTranslation } from 'react-i18next';
-import { useLocation } from 'react-router-dom';
-import { TemplateMobileDropdown } from './templatMobileDropdown';
+import { useLocale } from "@/hooks";
+import { LeftOutlined } from "@ant-design/icons";
+import { useTranslation } from "react-i18next";
+import { useLocation } from "react-router-dom";
+import { TemplateMobileDropdown } from "./templatMobileDropdown";
 
 const MoNav = () => {
   const location = useLocation();
@@ -23,7 +23,7 @@ const MoNav = () => {
   const { navigateTo } = useLocale();
 
   const goHome = useMemoizedFn(() => {
-    navigateTo('/');
+    navigateTo("/");
   });
 
   const onBackClick = useCallback(() => {
@@ -33,7 +33,7 @@ const MoNav = () => {
   return (
     <header className={Style.header} id="hero-nav">
       <Flex className={Style.nav} align="center" justify="space-between">
-        {!location.pathname.includes('detail') ? (
+        {!location.pathname.includes("detail") ? (
           <img
             className={`${getDeviceClassname(base.device)} ${Style.logo}`}
             onClick={goHome}
@@ -41,9 +41,9 @@ const MoNav = () => {
             alt="HIHIUM"
           />
         ) : (
-          <Space className={Style['top-bar']} onClick={onBackClick}>
+          <Space className={Style["top-bar"]} onClick={onBackClick}>
             <LeftOutlined />
-            <span>{t('case.back')}</span>
+            <span>{t("case.back")}</span>
           </Space>
         )}
 

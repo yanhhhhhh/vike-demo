@@ -9,8 +9,9 @@ export default {
   // https://vike.dev/Layout
 
   // https://vike.dev/head-tags
-  title: "My Vike App",
-  description: "Demo showcasing Vike",
+  title: "HeroEE",
+  description: "HiTHIUM HeroEE 户外移动电源,省钱•安全•耐用的家庭储能系统",
+
   // stream: true,\
   //  passToClient 传递服务端数据到客户端
   passToClient: ["locale", "urlLogical"],
