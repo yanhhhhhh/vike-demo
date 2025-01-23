@@ -13,8 +13,8 @@ export default {
   description: "Demo showcasing Vike",
   // stream: true,\
   //  passToClient 传递服务端数据到客户端
-  passToClient: ["locale"],
+  passToClient: ["locale", "urlLogical"],
   clientRouting: true,
-  // hydrationCanBeAborted: true,
+  hydrationCanBeAborted: true,
   extends: vikeReact,
 } satisfies Config;

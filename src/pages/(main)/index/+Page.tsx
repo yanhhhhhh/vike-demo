@@ -1,13 +1,16 @@
 import React from "react";
-import { Counter } from "./Counter.js";
-import { LocaleText } from "@/components/LocaleText.jsx";
-import { Link } from "@/components/Link.jsx";
-import { locales } from "@/utils/locales/locales.js";
+import { Counter } from "./Counter";
+import { LocaleText } from "@/components/LocaleText";
+import { Link } from "@/components/Link";
+import { locales } from "@/utils/locales/locales";
+import { useTranslation } from "@/hooks/useTranslation";
 
 export default function Page() {
+  const { t } = useTranslation();
+
   return (
     <>
-      <h1 className={"font-bold text-3xl pb-4"}>My Vike app</h1>
+      <h1 className={"font-bold text-3xl pb-4"}>{t("Hello")}</h1>
       This page is:
       <ul>
         <li>

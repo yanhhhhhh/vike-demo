@@ -6,3 +6,5 @@ export * from "./useRegon";
 export * from "./useLocale";
 export * from "./useQuery";
 export * from "./useTrackGather";
+
+export * from "./useTranslation";
