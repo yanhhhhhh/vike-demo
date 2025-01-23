@@ -4,9 +4,9 @@ import { solarPanelBanner } from "@/constants";
 
 // import { useAtomValue } from "jotai";
 import { useMemo } from "react";
-import { SolarPanelSeries } from "./components/production";
+import { SolarPanelSeries } from "../components/production";
 
-export const SolarPanelPage = () => {
+const SolarPanelPage = () => {
   // const { device } = useAtomValue(baseConfig);
   const device = {
     isPc: true,
@@ -28,8 +28,8 @@ export const SolarPanelPage = () => {
         backgroundColor: "#f8f8f8",
       }}
     >
-      <Card {...bannerProps}></Card>
-      <SolarPanelSeries></SolarPanelSeries>
+      <Card key={"solar"} {...bannerProps}></Card>
+      {/* <SolarPanelSeries></SolarPanelSeries> */}
     </div>
   );
 };

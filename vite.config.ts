@@ -10,6 +10,14 @@ export default defineConfig({
       "@": path.resolve(__dirname, "src"),
     },
   },
+  css: {
+    preprocessorOptions: {
+      less: {
+        javascriptEnabled: true,
+        additionalData: `@import "${path.resolve(__dirname, "src/assets/styles/variables.less")}";`,
+      },
+    },
+  },
   plugins: [
     vike({
       prerender: true,

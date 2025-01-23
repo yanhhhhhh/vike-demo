@@ -1,28 +1,29 @@
-import { useAtom, useAtomValue } from 'jotai';
-import { Space, Flex } from 'antd';
-import { GlobalOutlined } from '@ant-design/icons';
+import { useAtom, useAtomValue } from "jotai";
+import { Space, Flex } from "antd";
+import pkg from "@ant-design/icons";
 
-import { baseConfig, isShowRegion } from '@/stores';
-import { useTranslation } from 'react-i18next';
+// import { baseConfig, isShowRegion } from "@/stores";
+import { useTranslation } from "@/hooks/useTranslation";
 
-import './index.less';
+import "./index.less";
 
-import { useLocale } from '@/hooks';
-import RegionList from '@/components/regionList';
+// import { useLocale } from "@/hooks";
+import RegionList from "@/components/regionList";
+const { GlobalOutlined } = pkg;
 
 interface Props {
-  position?: 'navgatior' | 'footer';
+  position?: "navgatior" | "footer";
 }
 
-const LanguageSwitch = ({ position = 'navgatior' }: Props) => {
+const LanguageSwitch = ({ position = "navgatior" }: Props) => {
   const { t } = useTranslation();
   const base = useAtomValue(baseConfig);
-  const { chickLanguageIcon } = useLocale();
+  // const { chickLanguageIcon } = useLocale();
 
   const [isShowRegionValue, setIsShowRegion] = useAtom(isShowRegion);
   const { country, languageName } = base;
   function clickMask() {
-    document.body.style.overflowY = 'auto';
+    document.body.style.overflowY = "auto";
     setIsShowRegion(false);
   }
 
@@ -31,57 +32,50 @@ const LanguageSwitch = ({ position = 'navgatior' }: Props) => {
   // }, [changeLanguage, locale]);
 
   return (
-    <>
-      <Flex
-        align="center"
-        justify="flex-start"
-        className={`boxWraper ${position === 'footer' ? 'longBoxWrapper' : ''}`}
-        onClick={chickLanguageIcon}
-      >
-        <Space
-          size={'small'}
-          direction={base.device.isMobile ? 'vertical' : 'horizontal'}
-        >
-          {position === 'footer' ? (
-            <div className="label">
-              <span className="chooseCountry">{t('desc.chooseCountry')}</span>
+    <>111</>
+    // <>
+    //   <Flex
+    //     align="center"
+    //     justify="flex-start"
+    //     className={`boxWraper ${position === "footer" ? "longBoxWrapper" : ""}`}
+    //     onClick={chickLanguageIcon}
+    //   >
+    //     <Space size={"small"} direction={base.device.isMobile ? "vertical" : "horizontal"}>
+    //       {position === "footer" ? (
+    //         <div className="label">
+    //           <span className="chooseCountry">{t("desc.chooseCountry")}</span>
 
-              {t('sign.colon')}
-            </div>
-          ) : null}
-          <Flex align="center" className="ballWraper">
-            <GlobalOutlined
-              className="lanIcon"
-              // style={
-              //   position === 'footer'
-              //     ? {
-              //         color: '#fff',
-              //         fontSize: '0.20rem',
-              //       }
-              //     : {
-              //         color: '#fff',
-              //         fontSize: '0.20rem',
-              //       }
-              // }
-            />
-            {position === 'footer' ? `${country}  （${languageName}）` : null}
-          </Flex>
-        </Space>
-      </Flex>
-      {base.device.isPc && position === 'navgatior' && (
-        <>
-          <div
-            className={`mask ${isShowRegionValue ? 'show' : 'hide'}`}
-            onClick={clickMask}
-          ></div>
-          <div
-            className={`pcRegionList ${isShowRegionValue ? 'show' : 'hide'}`}
-          >
-            <RegionList />
-          </div>
-        </>
-      )}
-    </>
+    //           {t("sign.colon")}
+    //         </div>
+    //       ) : null}
+    //       <Flex align="center" className="ballWraper">
+    //         <GlobalOutlined
+    //           className="lanIcon"
+    //           // style={
+    //           //   position === 'footer'
+    //           //     ? {
+    //           //         color: '#fff',
+    //           //         fontSize: '0.20rem',
+    //           //       }
+    //           //     : {
+    //           //         color: '#fff',
+    //           //         fontSize: '0.20rem',
+    //           //       }
+    //           // }
+    //         />
+    //         {position === "footer" ? `${country}  （${languageName}）` : null}
+    //       </Flex>
+    //     </Space>
+    //   </Flex>
+    //   {base.device.isPc && position === "navgatior" && (
+    //     <>
+    //       <div className={`mask ${isShowRegionValue ? "show" : "hide"}`} onClick={clickMask}></div>
+    //       <div className={`pcRegionList ${isShowRegionValue ? "show" : "hide"}`}>
+    //         <RegionList />
+    //       </div>
+    //     </>
+    //   )}
+    // </>
   );
 };
 

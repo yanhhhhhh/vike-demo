@@ -1,14 +1,12 @@
 import { useEffect, useState } from "react";
-import { useMemoizedFn } from 'ahooks';
-import { useAtomValue } from 'jotai';
-import { baseConfig } from '@/stores';
+import { useMemoizedFn } from "ahooks";
+import { useAtomValue } from "jotai";
+import { baseConfig } from "@/stores";
 
 // const evt = "onorientationchange" in window ? "orientationchange" : "resize";
-const evt = 'resize'
+const evt = "resize";
 
 const useOrientationChange = () => {
-
-
   const base = useAtomValue(baseConfig);
   const [isLandscapeFlag, setLandscapeFlag] = useState<boolean>(false);
 
@@ -27,7 +25,7 @@ const useOrientationChange = () => {
   //     default:
   //       break
   //   }
-  //   setLandscapeFlag(flag); 
+  //   setLandscapeFlag(flag);
   // })
 
   // const onResize = useMemoizedFn(() => {
@@ -50,17 +48,15 @@ const useOrientationChange = () => {
   const isEqual = useMemoizedFn((num0, num1) => {
     const max = num0 > num1 ? num0 : num1;
     const min = num0 > num1 ? num1 : num0;
-    
-    return max / min < 1.8
-  })
+
+    return max / min < 1.8;
+  });
 
   const onOrientationChange = useMemoizedFn(() => {
-
-
-    const data = localStorage.getItem('J-recordOrientX');
+    const data = localStorage.getItem("J-recordOrientX");
     const cw = document.documentElement.clientWidth;
 
-    let  _Width = 0;
+    let _Width = 0;
     let _Height = 0;
     let sw = 0;
     let sh = 0;
@@ -69,44 +65,41 @@ const useOrientationChange = () => {
       sh = window.screen.height;
       _Width = sw < sh ? sw : sh;
       _Height = sw >= sh ? sw : sh;
-      localStorage.setItem('J-recordOrientX',_Width + ',' + _Height);
+      localStorage.setItem("J-recordOrientX", _Width + "," + _Height);
     } else {
-      const str = data.split(',');
+      const str = data.split(",");
       _Width = +str[0];
       _Height = +str[1];
     }
 
-    if(isEqual(cw, _Width)) {
+    if (isEqual(cw, _Width)) {
       // 竖屏
       setLandscapeFlag(false);
       return;
     }
-    if(isEqual(cw, _Height)){
-        // 横屏
-        setLandscapeFlag(true);
-        return;
+    if (isEqual(cw, _Height)) {
+      // 横屏
+      setLandscapeFlag(true);
+      return;
     }
-  }) 
-  
+  });
 
   useEffect(() => {
     //判断手机横竖屏状态
     if (base.device.isMobile) {
       window.addEventListener(evt, onOrientationChange, false);
     }
-    
+
     return () => {
       if (base.device.isMobile) {
-        window.removeEventListener(evt, onOrientationChange, false); 
+        window.removeEventListener(evt, onOrientationChange, false);
       }
-    }
+    };
   }, [base.device.isMobile]);
 
   return {
     isLandscapeFlag,
-  }
-}
-
-export {
-  useOrientationChange
+  };
 };
+
+export { useOrientationChange };

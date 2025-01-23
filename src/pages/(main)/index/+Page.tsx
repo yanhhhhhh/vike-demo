@@ -10,11 +10,11 @@ export default function Page() {
 
   return (
     <>
-      <h1 className={"font-bold text-3xl pb-4"}>{t("Hello")}</h1>
+      <h1 className={"font-bold text-3xl pb-4"}>{t("header.product")}</h1>
       This page is:
       <ul>
         <li>
-          <LocaleText>Localized</LocaleText>. <LocaleText>Change language</LocaleText>:
+          <LocaleText>partsPage.partsSeries</LocaleText>. <LocaleText>Change language</LocaleText>:
           {locales.map((locale) => (
             <div style={{ marginLeft: 7 }} key={locale}>
               <Link locale={locale} href="/">

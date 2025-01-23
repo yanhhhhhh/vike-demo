@@ -14,7 +14,7 @@
     "target": "ES2022",
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
     "types": ["vite/client", "vike-react", "vite-plugin-vercel/types"],
-    "jsx": "preserve",
+    "jsx": "react-jsx",
     "jsxImportSource": "react",
     "baseUrl": "./",
     "paths": {

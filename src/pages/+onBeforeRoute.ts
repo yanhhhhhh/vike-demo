@@ -5,7 +5,7 @@ const onBeforeRoute: OnBeforeRouteSync = (pageContext): ReturnType<OnBeforeRoute
   const url = pageContext.urlParsed;
   const { urlPathnameWithoutLocale, locale } = extractLocale(url.pathname);
   const urlLogical = modifyUrl(url.href, { pathname: urlPathnameWithoutLocale });
-  console.log("onBeforeRoute", { url, urlLogical, locale });
+
   return {
     pageContext: {
       // Make `locale` available as pageContext.locale

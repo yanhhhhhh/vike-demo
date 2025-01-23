@@ -1,11 +1,12 @@
-import { useMemo, PropsWithChildren, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import './index.less';
-import { useLocale, useWebsiteLinkTrack } from '@/hooks';
-import { useAtomValue } from 'jotai';
-import { baseConfig } from '@/stores';
-import { HeroEkWh1Url } from '@/constants';
-export type MoreType = 'learnMoreInfo' | 'buyNow' | 'learnMore';
+import { useMemo, PropsWithChildren, useState } from "react";
+import { useTranslation } from "@/hooks";
+import "./index.less";
+// import { useWebsiteLinkTrack } from "@/hooks";
+// import { useAtomValue } from "jotai";
+// import { baseConfig } from "@/stores";
+import { HeroEkWh1Url } from "@/constants";
+import { usePageContext } from "vike-react/usePageContext";
+export type MoreType = "learnMoreInfo" | "buyNow" | "learnMore";
 export interface CardProps extends PropsWithChildren {
   title?: string;
   description?: string;
@@ -27,25 +28,26 @@ export interface CardProps extends PropsWithChildren {
 export const Card = (pros: CardProps) => {
   const { t } = useTranslation();
   const [isHover, setIsHover] = useState(false);
-  const { navigateTo } = useLocale();
-  const { languageCode } = useAtomValue(baseConfig);
+  // const { navigateTo } = useLocale();
+  const { locale } = usePageContext();
+  const languageCode = locale.split("_")[0];
   const clickMore = () => {
-    navigateTo(more);
+    // navigateTo(more);
   };
-  const { purchaseTrack } = useWebsiteLinkTrack();
+  // const { purchaseTrack } = useWebsiteLinkTrack();
   const {
     title,
     description,
     backgroundImage,
-    fontColor = '#ffffff',
-    backgroundWidth = '100vw',
-    backgroundHeight = '8rem',
+    fontColor = "#ffffff",
+    backgroundWidth = "100vw",
+    backgroundHeight = "8rem",
     titleStyle = {},
     descriptionStyle = {},
     contentStyle = {},
     moreStyle = {},
     cardStyle = {},
-    moreType = 'learnMoreInfo',
+    moreType = "learnMoreInfo",
     more,
     children,
     hoverAnimaiton = false,
@@ -55,7 +57,7 @@ export const Card = (pros: CardProps) => {
   const cardMoreStyel = useMemo(() => {
     if (more === undefined) {
       return {
-        display: 'none',
+        display: "none",
         ...moreStyle,
       };
     }
@@ -64,26 +66,21 @@ export const Card = (pros: CardProps) => {
     <div
       className={`hero-card ${languageCode}`}
       style={{
-        backgroundImage: backgroundImage
-          ? `url(${backgroundImage})`
-          : undefined,
+        backgroundImage: backgroundImage ? `url(${backgroundImage})` : undefined,
         width: backgroundWidth,
         height: backgroundHeight,
-        backgroundPosition: 'center',
-        backgroundSize: 'cover',
+        backgroundPosition: "center",
+        backgroundSize: "cover",
         ...cardStyle,
 
-        transform: hoverAnimaiton && isHover ? 'scale(1.1)' : 'scale(1)',
+        transform: hoverAnimaiton && isHover ? "scale(1.1)" : "scale(1)",
         zIndex: isHover ? 1 : 0,
-        transition: 'all 0.5s ease',
+        transition: "all 0.5s ease",
       }}
       onMouseEnter={() => setIsHover(true)}
       onMouseLeave={() => setIsHover(false)}
     >
-      <div
-        className="hero-card-content"
-        style={{ color: fontColor, ...contentStyle }}
-      >
+      <div className="hero-card-content" style={{ color: fontColor, ...contentStyle }}>
         <div className="hero-card-title " style={titleStyle}>
           {title && t(title)}
         </div>
@@ -100,16 +97,12 @@ export const Card = (pros: CardProps) => {
                 dangerouslySetInnerHTML={{ __html: t(description) }}
               ></div>
             )}
-        {moreType === 'learnMoreInfo' && (
-          <div
-            className="hero-card-more "
-            style={cardMoreStyel}
-            onClick={clickMore}
-          >
-            {t('button.learnMoreInfo')}&gt;
+        {moreType === "learnMoreInfo" && (
+          <div className="hero-card-more " style={cardMoreStyel} onClick={clickMore}>
+            {t("button.learnMoreInfo")}&gt;
           </div>
         )}
-        {moreType === 'buyNow' && (
+        {moreType === "buyNow" && (
           <a
             className="hero-card-more "
             style={cardMoreStyel}
@@ -118,19 +111,19 @@ export const Card = (pros: CardProps) => {
             rel="noreferrer"
             onClick={() => {
               if (more === HeroEkWh1Url.jd) {
-                purchaseTrack({
-                  operationItem: '一度电',
-                  operationItemLink: more,
-                });
+                // purchaseTrack({
+                //   operationItem: "一度电",
+                //   operationItemLink: more,
+                // });
               }
             }}
           >
-            {t('button.buyNow')}&gt;
+            {t("button.buyNow")}&gt;
           </a>
         )}
-        {moreType === 'learnMore' && (
+        {moreType === "learnMore" && (
           <div className="hero-card-more " style={cardMoreStyel}>
-            {t('button.learnMore')}&gt;
+            {t("button.learnMore")}&gt;
           </div>
         )}
       </div>

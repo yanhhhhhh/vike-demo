@@ -1,4 +1,9 @@
-export { default as Icon } from './view';
+import { clientOnly } from "vike-react/clientOnly";
 
-export * from './view';
-export * from './icons';
+const Icon = clientOnly(() => import("./view"));
+
+// export { default as Icon } from "./view";
+export default Icon;
+// export * from "./view";
+export * from "./type";
+export * from "./icons";

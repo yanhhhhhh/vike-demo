@@ -1,12 +1,16 @@
 import "./tailwind.css";
 import "./style.css";
-import React from "react";
+import "./variables.less";
+import "./index.less";
+
+import React, { useEffect } from "react";
 import logoUrl from "../assets/logo.svg";
 import { Link } from "../components/Link.js";
-import { PageContextProvider, usePageContext } from "vike-react/usePageContext";
 
 export default function LayoutDefault({ children }: { children: React.ReactNode }) {
-  const pageContext = usePageContext();
+  useEffect(() => {
+    console.log("layout default");
+  }, []);
   return (
     <div className={"flex max-w-5xl m-auto"}>
       <Sidebar>

@@ -41,6 +41,8 @@ export default tseslint.config(
         },
       ],
       "@typescript-eslint/no-namespace": 0,
+      "@typescript-eslint/no-explicit-any": 0,
+      "react/react-in-jsx-scope": "off", 
     },
   },
 

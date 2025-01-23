@@ -1,5 +1,5 @@
-import { useTranslation } from 'react-i18next';
-import './index.less';
+import { useTranslation } from "@/hooks/useTranslation";
+import "./index.less";
 export interface ProductionCardProps {
   title: string;
   fontColor?: string;
@@ -19,7 +19,7 @@ export const ProductionCard = (pros: ProductionCardProps) => {
   const {
     title,
     image,
-    fontColor = '#000',
+    fontColor = "#000",
     titleStyle = {},
     contentStyle = {},
     moreStyle = {},
@@ -30,7 +30,7 @@ export const ProductionCard = (pros: ProductionCardProps) => {
     more,
   } = pros;
   if (more === undefined) {
-    moreStyle.display = 'none';
+    moreStyle.display = "none";
   }
   return (
     <div
@@ -44,23 +44,15 @@ export const ProductionCard = (pros: ProductionCardProps) => {
         ...cardStyle,
       }}
     >
-      <div
-        className="production-card-content"
-        style={{ color: fontColor, ...contentStyle }}
-      >
+      <div className="production-card-content" style={{ color: fontColor, ...contentStyle }}>
         <div className="production-card-title " style={titleStyle}>
           {t(title)}
         </div>
 
         <div className="production-card-more" style={moreStyle}>
-          {t('button.buyNow')}
+          {t("button.buyNow")}
         </div>
-        <img
-          src={image}
-          style={imageStyle}
-          alt={t(title)}
-          className="production-card-image "
-        />
+        <img src={image} style={imageStyle} alt={t(title)} className="production-card-image " />
       </div>
     </div>
   );
